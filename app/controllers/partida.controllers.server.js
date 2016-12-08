@@ -13,8 +13,6 @@ module.exports.create = function(req, res, next){
     });
 }
 
-
-
 module.exports.registrarVencedor = function (req, res, next) {
 
     Partida.findById(req.body.idPartida, function (err, partida) {
@@ -73,7 +71,6 @@ module.exports.registrarVencedor = function (req, res, next) {
     });
 
 }
-
 
 module.exports.list = function(req, res, next){
     Partida.find({}, function(err, partidas) {
