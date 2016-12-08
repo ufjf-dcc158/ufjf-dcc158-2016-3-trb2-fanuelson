@@ -4,7 +4,7 @@ module.exports = function(app){
         .post(partida.create)
         .get(partida.list);
 
-    app.route("/partida/registrar/vencedor")
+    app.route("/partida/registrar/resultado")
         .post(partida.registrarVencedor);
 
     app.route("/partida/:idJogador")
