@@ -3,6 +3,10 @@ module.exports = function(app){
     app.route("/partida")
         .post(partida.create)
         .get(partida.list);
+
+    app.route("/partida/registrar/vencedor")
+        .post(partida.registrarVencedor);
+
     app.route("/partida/:idJogador")
         .get(partida.findByJogador)
     app.param("idJogador", partida.findByJogador);
