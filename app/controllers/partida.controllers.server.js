@@ -19,11 +19,18 @@ module.exports.registrarVencedor = function (req, res, next) {
 
     Partida.findById(req.body.idPartida, function (err, partida) {
         if (err) next(err);
-        switch (req.body.numeroVencedor) {
+
+        if(partida.idVencedor) {
+            res.status(400).send({"mensagem":"Partida já finalizada."});
+            return;
+        }
+        switch (parseInt(req.body.numeroVencedor)) {
             case 1:
                 partida.idVencedor = partida.idJogador1;
+                break;
             case 2:
                 partida.idVencedor = partida.idJogador2;
+                break;
             default:
                 partida.idVencedor = null;
         }
@@ -43,7 +50,7 @@ module.exports.registrarVencedor = function (req, res, next) {
                         jogadorVencedor.qtdVitorias++;
                         jogadorPerdedor.qtdDerrotas++;
 
-                        var resultElo = EloRating.calculate(jogadorVencedor.elo, jogadorPerdedor.elo, true);
+                        var resultElo = EloRating.calculate(jogadorVencedor.elo, jogadorPerdedor.elo, true, 25);
                         jogadorVencedor.elo = resultElo.playerRating;
                         jogadorPerdedor.elo = resultElo.opponentRating;
                     }else{
@@ -54,7 +61,10 @@ module.exports.registrarVencedor = function (req, res, next) {
                         if (err) next(err);
                         Jogador.findByIdAndUpdate(jogadorPerdedor._id, { $set: jogadorPerdedor}, { new: true }, function (err, jp) {
                             if (err) next(err);
-                            res.send(part2);
+                            res.send({
+                                "obj": part2,
+                                "mensagem": "Resultado Registrado com sucesso!"
+                            });
                         });
                     });
                 });
