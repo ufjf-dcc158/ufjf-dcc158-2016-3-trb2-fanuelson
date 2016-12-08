@@ -5,6 +5,7 @@ var PartidaSchema = new Schema({
     idJogador1: String,
     idJogador2: String,
     data: Date,
+    finalizada: Boolean,
     idVencedor: String
 });
 

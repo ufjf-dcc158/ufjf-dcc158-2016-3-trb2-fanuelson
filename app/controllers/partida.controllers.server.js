@@ -3,6 +3,7 @@ var Jogador = require('mongoose').model('Jogador');
 var EloRating = require('elo-rating');
 
 module.exports.create = function(req, res, next){
+    req.body.finalizada = false;
     var part = new Partida(req.body);
     part.save(function (err) {
         if(err){
@@ -18,7 +19,7 @@ module.exports.registrarVencedor = function (req, res, next) {
     Partida.findById(req.body.idPartida, function (err, partida) {
         if (err) next(err);
 
-        if(partida.idVencedor) {
+        if(partida.finalizada) {
             res.status(400).send({"mensagem":"Partida já finalizada."});
             return;
         }
@@ -32,7 +33,7 @@ module.exports.registrarVencedor = function (req, res, next) {
             default:
                 partida.idVencedor = null;
         }
-
+        partida.finalizada = true;
         Partida.findByIdAndUpdate(partida._id, { $set: partida}, { new: true }, function (err, part2) {
             if (err) next(err);
             if(part2.idVencedor) {
