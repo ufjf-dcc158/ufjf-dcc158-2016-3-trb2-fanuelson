@@ -11,12 +11,6 @@ var cadastroPartidaController = function($scope, $position, $http) {
 
    vm.minDate = new Date();
 
-   vm.dateOpen = false;
-
-   vm.openDate = function() {
-      vm.dateOpen = true;
-   }
-
    vm.salvar = function() {
       vm.partida.idJogador1 = vm.partida.idJogador1._id;
       vm.partida.idJogador2 = vm.partida.idJogador2._id;

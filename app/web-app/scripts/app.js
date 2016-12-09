@@ -15,7 +15,8 @@ angular
     'angular-loading-bar',
     'ngSanitize',
     'ui.select',
-    'ui.utils.masks'
+    'ui.utils.masks',
+    'ngMaterial'
 
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
@@ -24,6 +25,24 @@ angular
       debug:false,
       events:true,
     });
+
+   //  ANGULAR MATERIAL THEME AND DATE CONFIG
+    var configTheme = function($mdThemingProvider){
+      // Update the theme colors to use themes on font-icons
+      $mdThemingProvider.theme('default')
+      .primaryPalette("blue")
+      .warnPalette('red');
+   };
+
+   var configDateFormat = function($mdDateLocaleProvider) {
+      $mdDateLocaleProvider.formatDate = function(date) {
+         var m = moment(date);
+         return m.isValid() ? m.format('DD/MM/YYYY') : null;
+      };
+   };
+
+   angular.module('sbAdminApp').config(configTheme);
+   angular.module('sbAdminApp').config(configDateFormat);
 
     $urlRouterProvider.otherwise('/dashboard/home');
 
@@ -78,25 +97,6 @@ angular
             }
         }
     })
-      .state('dashboard.home',{
-        url:'/home',
-        controller: 'MainCtrl',
-        templateUrl:'views/dashboard/home.html',
-        resolve: {
-          loadMyFiles:function($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name:'sbAdminApp',
-              files:[
-              'scripts/controllers/main.js',
-              'scripts/directives/timeline/timeline.js',
-              'scripts/directives/notifications/notifications.js',
-              'scripts/directives/chat/chat.js',
-              'scripts/directives/dashboard/stats/stats.js'
-              ]
-            })
-          }
-        }
-      })
       .state('dashboard.ranking',{
         url:'/ranking',
         controller: 'RankingController',
@@ -135,14 +135,34 @@ angular
         controller: 'CadastroPartidaController',
         templateUrl:'views/partida/cadastro-partida.html',
         resolve: {
-          loadMyFiles:function($ocLazyLoad) {
+          loadMyFiles:function($$animateJs, $ocLazyLoad) {
             return $ocLazyLoad.load({
               name:'sbAdminApp',
               files:[
               'scripts/controllers/main.js',
               'views/partida/CadastroPartidaController.js',
               ]
-            })
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngAnimate',
+             files:['bower_components/angular-animate/angular-animate.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngAria',
+             files:['bower_components/angular-aria/angular-aria.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngMessages',
+             files:['bower_components/angular-messages/angular-messages.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngMaterial',
+             files:['bower_components/angular-material/angular-material.js']
+           })
           }
         }
     })

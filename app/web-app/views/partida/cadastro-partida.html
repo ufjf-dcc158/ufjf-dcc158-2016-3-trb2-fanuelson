@@ -10,17 +10,12 @@
             <div class="panel-body">
                <div class="row">
                   <div class="col-lg-4">
-                     <label >Data da partida</label>
-                     <p class="input-group">
-                        <input type="text" class="form-control"
-                           ng-model="partida.data"
-                           ng-required="true" ui-date-mask/>
-                        <span class="input-group-btn">
-                           <button type="button" class="btn btn-default" ng-click="openDate()"><i class="glyphicon glyphicon-calendar"></i></button>
-                        </span>
-                     </p>
+                     <label>Data da partida</label>
+                     <br>
+                     <md-datepicker type="text" class="md-only-icon" md-min-date="minDate" ng-model="partida.data" md-placeholder="Data da partida" ></md-datepicker>
                   </div>
                </div>
+               <br>
                <div class="row">
                   <div class="col-lg-4">
                      <form role="form">
