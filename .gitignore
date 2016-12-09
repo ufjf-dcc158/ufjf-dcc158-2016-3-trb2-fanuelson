@@ -1,3 +1,5 @@
 node_modules/**
 config/env/**
 .idea/**
+app/web-app/bower_components/**
+app/web-app/node_modules/**

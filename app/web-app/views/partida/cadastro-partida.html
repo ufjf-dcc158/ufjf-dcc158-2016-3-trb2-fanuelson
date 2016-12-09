@@ -1,0 +1,91 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12">
+         <h1 class="page-header">Cadastrar Jogador</h1>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               Jogador
+            </div>
+
+            <div class="panel-body">
+               <div class="row">
+                  <div class="col-lg-4">
+                     <label >Data da partida</label>
+                     <p class="input-group">
+                        <input type="text" class="form-control"
+                           ng-model="partida.data"
+                           ng-required="true" ui-date-mask/>
+                        <span class="input-group-btn">
+                           <button type="button" class="btn btn-default" ng-click="openDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                     </p>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-4">
+                     <form role="form">
+                        <div class="form-group">
+                           <label>Jogador 1:</label>
+                           <ui-select ng-model="partida.idJogador1" theme="selectize"
+                              title="Choose a country">
+
+                              <ui-select-match placeholder="Selecione um jogador...">
+                                 {{$select.selected.nome}}
+                              </ui-select-match>
+
+                              <ui-select-choices repeat="jog in jogadores | filter: {nome: $select.search}" >
+                                 <span ng-bind-html="jog.nome | highlight: {nome: $select.search}"></span>
+                              </ui-select-choices>
+
+                           </ui-select>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="col-lg-1">
+                     <form role="form">
+                        <div class="form-group">
+                           <label><i class="fa fa-times fa-5x" aria-hidden="true"></i></label>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="col-lg-4">
+                     <form role="form">
+                        <div class="form-group">
+                           <label>Jogador 2:</label>
+                           <ui-select ng-model="partida.idJogador2" theme="selectize"
+                              title="Choose a country">
+
+                              <ui-select-match placeholder="Selecione um jogador...">
+                                 {{$select.selected.nome}}
+                              </ui-select-match>
+
+                              <ui-select-choices repeat="jog in jogadores | filter: {nome: $select.search}">
+                                 <span ng-bind-html="jog.nome | highlight: {nome: $select.search}"></span>
+                              </ui-select-choices>
+
+                           </ui-select>
+                        </div>
+                     </form>
+                  </div>
+                  <div class="row text-right">
+                     <div class="col-lg-12">
+                        <button type="button" class="btn btn-success" ng-click="salvar()">Salvar</button>
+                        <button type="button" class="btn btn-link" ui-sref="dashboard.ranking">Cancelar</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+
+<!-- <ui-select ng-model="ctrl.country.selected" theme="selectize" ng-disabled="ctrl.disabled" style="width: 300px;" title="Choose a country">
+    <ui-select-match placeholder="Select or search a country in the list...">{{$select.selected.name}}</ui-select-match>
+    <ui-select-choices repeat="country in ctrl.countries | filter: $select.search">
+      <span ng-bind-html="country.name | highlight: $select.search"></span>
+      <small ng-bind-html="country.code | highlight: $select.search"></small>
+    </ui-select-choices>
+  </ui-select> -->

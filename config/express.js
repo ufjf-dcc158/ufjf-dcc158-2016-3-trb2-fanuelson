@@ -16,8 +16,9 @@ module.exports = function(){
     app.use(bodyParser.urlencoded({extended:true}));
     app.use(bodyParser.json());
     app.use(methodOverride());
-    app.set('views', './app/views');
+    app.set('views', './app/ejs');
     app.set('view engine', 'ejs');
+    app.use('/app-web', express.static('./app/web-app'));
     require('../app/routes/jogador.routes.server.js')(app);
     require('../app/routes/partida.routes.server')(app);
     require('../app/routes/core.routes.server.js')(app);

@@ -23,6 +23,19 @@ module.exports.list = function(req, res, next){
   });
 }
 
+module.exports.findTop100OrderByElo = function(req, res, next) {
+
+   Jogador.find({})
+            .sort({'elo': -1})
+            .limit(100)
+            .exec(function(err, jogadores) {
+               if(err)
+                  next(err);
+               else
+                  res.json(jogadores);
+            });
+}
+
 module.exports.getById = function(req, res, next, id){
   Jogador.findOne({"_id":id}, function(err, jogador){
     if(err){

@@ -3,6 +3,10 @@ module.exports = function(app){
   app.route("/jogador")
     .post(jogador.create)
     .get(jogador.list);
+
+    app.route("/jogador/top100")
+      .get(jogador.findTop100OrderByElo);
+      
   app.route("/jogador/:jogadorId")
    .get(jogador.read)
   app.param("jogadorId", jogador.getById);

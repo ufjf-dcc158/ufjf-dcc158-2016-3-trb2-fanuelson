@@ -1,0 +1,56 @@
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-lg-12">
+         <h1 class="page-header">Cadastrar Jogador</h1>
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               Jogador
+            </div>
+            <div class="panel-body">
+               <div class="row">
+                  <div class="col-lg-6">
+                     <form role="form">
+                        <div class="form-group">
+                           <label>Nome:</label>
+                           <input ng-model="jogador.nome" class="form-control">
+                        </div>
+                        <div class="row">
+                           <div class="col-lg-3">
+                              <div class="form-group">
+                                 <label>Qtd Vitórias:</label>
+                                 <input ng-disabled="true" value="0" class="form-control">
+                              </div>
+                           </div>
+                           <div class="col-lg-3">
+                              <div class="form-group">
+                                 <label>Qtd Derrotas:</label>
+                                 <input ng-disabled="true" value="0" class="form-control">
+                              </div>
+                           </div>
+                           <div class="col-lg-3">
+                              <div class="form-group">
+                                 <label>Qtd Empates:</label>
+                                 <input ng-disabled="true" value="0" class="form-control">
+                              </div>
+                           </div>
+                           <div class="col-lg-3">
+                              <div class="form-group">
+                                 <label>ELO:</label>
+                                 <input ng-disabled="true" value="1500" class="form-control">
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row text-right">
+                           <div class="col-lg-12">
+                              <button type="button" class="btn btn-success" ng-click="salvar()">Salvar</button>
+                              <button type="button" class="btn btn-link" ui-sref="dashboard.ranking">Cancelar</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
