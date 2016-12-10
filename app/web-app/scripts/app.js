@@ -16,7 +16,8 @@ angular
     'ngSanitize',
     'ui.select',
     'ui.utils.masks',
-    'ngMaterial'
+    'ngMaterial',
+    'angular-toasty'
 
   ])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
@@ -34,6 +35,17 @@ angular
       .warnPalette('red');
    };
 
+   // TOASTY CONFIG
+	angular.module('sbAdminApp').config(['toastyConfigProvider', function(toastyConfigProvider) {
+		toastyConfigProvider.setConfig({
+			sound: false,
+			shake: false,
+			clickToClose: true,
+			timeout: 10000,
+			html: true
+		});
+	}]);
+
    var configDateFormat = function($mdDateLocaleProvider) {
       $mdDateLocaleProvider.formatDate = function(date) {
          var m = moment(date);
@@ -44,14 +56,14 @@ angular
    angular.module('sbAdminApp').config(configTheme);
    angular.module('sbAdminApp').config(configDateFormat);
 
-    $urlRouterProvider.otherwise('/dashboard/home');
+    $urlRouterProvider.otherwise('/dashboard/ranking');
 
     $stateProvider
       .state('dashboard', {
         url:'/dashboard',
         templateUrl: 'views/dashboard/main.html',
         resolve: {
-            loadMyDirectives:function($ocLazyLoad){
+            loadMyDirectives:function($$animateJs,$ocLazyLoad){
                 return $ocLazyLoad.load(
                 {
                     name:'sbAdminApp',
@@ -102,7 +114,7 @@ angular
         controller: 'RankingController',
         templateUrl:'views/ranking/ranking.html',
         resolve: {
-          loadMyFiles:function($ocLazyLoad) {
+          loadMyFiles:function($$animateJs, $ocLazyLoad) {
             return $ocLazyLoad.load({
               name:'sbAdminApp',
               files:[
@@ -140,7 +152,8 @@ angular
               name:'sbAdminApp',
               files:[
               'scripts/controllers/main.js',
-              'views/partida/CadastroPartidaController.js',
+              'bower_components/angular-toasty/dist/angular-toasty.min.js',
+              'views/partida/CadastroPartidaController.js'
               ]
            })
            $ocLazyLoad.load(
@@ -165,6 +178,22 @@ angular
            })
           }
         }
+    })
+    .state('dashboard.consulta-partidas',{
+     url:'/consulta-partidas',
+     controller: 'ConsultaPartidasController',
+     templateUrl:'views/partida/consulta-partidas.html',
+     resolve: {
+        loadMyFiles:function($$animateJs, $ocLazyLoad) {
+          return $ocLazyLoad.load({
+            name:'sbAdminApp',
+            files:[
+            'scripts/controllers/main.js',
+            'views/partida/ConsultaPartidasController.js',
+            ]
+          })
+        }
+     }
     })
       .state('dashboard.form',{
         templateUrl:'views/form.html',

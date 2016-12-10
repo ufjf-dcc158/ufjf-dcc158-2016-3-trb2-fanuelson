@@ -2,8 +2,24 @@ var Partida = require('mongoose').model('Partida');
 var Jogador = require('mongoose').model('Jogador');
 var EloRating = require('elo-rating');
 
+var validate = function(campo, obj, res) {
+   var invalidObj = {
+      requiredMessage: "Campo "+campo+" obrigatório."
+   }
+   if(!obj) {
+      res.status(400).send(invalidObj);
+      return false;
+   }
+   return true;
+}
+
 module.exports.create = function(req, res, next){
     req.body.finalizada = false;
+    if(!validate("jogador1", req.body.idJogador1, res)
+      || !validate("jogador2", req.body.idJogador2, res)
+      || !validate("data", req.body.data, res) ) {
+      return
+   }
     var part = new Partida(req.body);
     part.save(function (err) {
         if(err){
@@ -74,7 +90,9 @@ module.exports.registrarVencedor = function (req, res, next) {
 }
 
 module.exports.list = function(req, res, next){
-    Partida.find({}, function(err, partidas) {
+   Partida.find({})
+   .populate('jogador1')
+   .exec(function(err, partidas) {
         if(err){
             next(err);
         } else {
