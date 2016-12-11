@@ -91,7 +91,7 @@ module.exports.registrarVencedor = function (req, res, next) {
 
 module.exports.list = function(req, res, next){
    Partida.find({})
-   .populate('jogador1')
+   .populate('idJogador1')
    .exec(function(err, partidas) {
         if(err){
             next(err);
@@ -107,6 +107,18 @@ module.exports.findByJogador = function(req, res, next, idJogador){
             next(err);
         }else{
             res.json(partidas);
+        }
+    });
+}
+
+module.exports.findById = function(req, res, next, idPart){
+    Partida.find({_id: idPart})
+    .populate(['idJogador2', 'idJogador1' ])
+    .exec(function(err, p){
+        if(err){
+            next(err);
+        }else{
+            res.json(p);
         }
     });
 }

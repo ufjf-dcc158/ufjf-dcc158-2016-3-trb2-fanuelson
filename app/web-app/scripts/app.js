@@ -152,6 +152,7 @@ angular
               name:'sbAdminApp',
               files:[
               'scripts/controllers/main.js',
+              'bower_components/angular-toasty/dist/angular-toasty.min.css',
               'bower_components/angular-toasty/dist/angular-toasty.min.js',
               'views/partida/CadastroPartidaController.js'
               ]
@@ -175,6 +176,61 @@ angular
            {
              name:'ngMaterial',
              files:['bower_components/angular-material/angular-material.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'angular-toasty',
+             files:['bower_components/angular-toasty/dist/angular-toasty.min.js',
+                     'bower_components/angular-toasty/dist/angular-toasty.min.css'
+               ]
+           })
+          }
+        }
+    })
+      .state('dashboard.registra-resultado-partida',{
+        url:'/registra-resultado-partida',
+        params: {
+               idPartida: null
+        },
+        controller: 'RegistraResultadoPartidaController',
+        templateUrl:'views/partida/registra-resultado-partida.html',
+        resolve: {
+          loadMyFiles:function($$animateJs, $ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name:'sbAdminApp',
+              files:[
+              'scripts/controllers/main.js',
+              'bower_components/angular-toasty/dist/angular-toasty.min.css',
+              'bower_components/angular-toasty/dist/angular-toasty.min.js',
+              'views/partida/RegistraResultadoPartidaController.js'
+              ]
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngAnimate',
+             files:['bower_components/angular-animate/angular-animate.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngAria',
+             files:['bower_components/angular-aria/angular-aria.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngMessages',
+             files:['bower_components/angular-messages/angular-messages.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'ngMaterial',
+             files:['bower_components/angular-material/angular-material.js']
+           })
+           $ocLazyLoad.load(
+           {
+             name:'angular-toasty',
+             files:['bower_components/angular-toasty/dist/angular-toasty.min.js',
+                     'bower_components/angular-toasty/dist/angular-toasty.min.css'
+               ]
            })
           }
         }

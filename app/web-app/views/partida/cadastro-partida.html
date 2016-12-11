@@ -9,6 +9,15 @@
 
             <div class="panel-body">
                <div class="row">
+                  <div class="col-lg-12">
+                     <div ng-if="requiredMessage" class="alert alert-danger" role="alert">
+                       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                       <span class="sr-only">Error:</span>
+                       {{requiredMessage}}
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
                   <div class="col-lg-4">
                      <label>Data da partida</label>
                      <br>
@@ -22,6 +31,7 @@
                         <div class="form-group">
                            <label>Jogador 1:</label>
                            <ui-select ng-model="partida.idJogador1" theme="selectize"
+                              on-select="onSelectPlayer1($item, $model)"
                               title="Choose a country">
 
                               <ui-select-match placeholder="Selecione um jogador...">
@@ -48,13 +58,14 @@
                         <div class="form-group">
                            <label>Jogador 2:</label>
                            <ui-select ng-model="partida.idJogador2" theme="selectize"
+                              on-select="onSelectPlayer2($item, $model)"
                               title="Choose a country">
 
                               <ui-select-match placeholder="Selecione um jogador...">
                                  {{$select.selected.nome}}
                               </ui-select-match>
 
-                              <ui-select-choices repeat="jog in jogadores | filter: {nome: $select.search}">
+                              <ui-select-choices repeat="jog in jogadores2 | filter: {nome: $select.search}">
                                  <span ng-bind-html="jog.nome | highlight: {nome: $select.search}"></span>
                               </ui-select-choices>
 
