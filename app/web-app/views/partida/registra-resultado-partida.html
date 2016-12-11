@@ -38,6 +38,7 @@
                            {{partida.idJogador1.nome}}
                            <md-checkbox ng-model="numeroVencedor"
                               ng-true-value="1"
+                              aria-label="jog1"
                               ng-disabled="partida.finalizada">
                            </md-checkbox>
                         </div>
@@ -56,6 +57,7 @@
                         <div class="text-right" style="padding: 40px">
                            <md-checkbox ng-model="numeroVencedor"
                            ng-true-value="2"
+                           aria-label="jog2"
                            ng-disabled="partida.finalizada">
                         </md-checkbox>
                            {{partida.idJogador2.nome}}
@@ -67,6 +69,7 @@
                         Empate
                         <md-checkbox ng-model="numeroVencedor"
                         ng-true-value="0"
+                        aria-label="empate"
                         ng-disabled="partida.finalizada">
                      </md-checkbox>
                      </div>

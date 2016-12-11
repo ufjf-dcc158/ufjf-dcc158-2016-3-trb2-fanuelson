@@ -69,7 +69,6 @@ angular
                     name:'sbAdminApp',
                     files:[
                     'scripts/directives/header/header.js',
-                    'scripts/directives/header/header-notification/header-notification.js',
                     'scripts/directives/sidebar/sidebar.js',
                     'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
                     ]
@@ -119,7 +118,7 @@ angular
               name:'sbAdminApp',
               files:[
               'scripts/controllers/main.js',
-              'scripts/controllers/RankingController.js',
+              'views/ranking/RankingController.js',
               'scripts/directives/dashboard/stats/stats.js'
               ]
             })
