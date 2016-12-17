@@ -24,13 +24,18 @@ var cadastroJogadorController = function($scope,$position, $http, $stateParams) 
 
 
    vm.salvar = function() {
+      var $promiseSalvar ;
+      if(vm.jogador._id) {
+         $promiseSalvar = $http.put("http://localhost:3000/jogador", vm.jogador);
+      }else {
+         $promiseSalvar = $http.post("http://localhost:3000/jogador", vm.jogador);
+      }
 
-      $http.post("http://localhost:3000/jogador", vm.jogador)
-         .success(function(res){
-            vm.limparForm();
-         }).error( function (res){
+      $promiseSalvar.success(function(res){
+         vm.limparForm();
+      }).error( function (res){
 
-         });
+      });
 
    }
 

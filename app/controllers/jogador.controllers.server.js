@@ -12,6 +12,17 @@ module.exports.create = function(req, res,
    });
 }
 
+module.exports.update = function(req, res, next) {
+   var jogad = req.body;
+   Jogador.findByIdAndUpdate(jogad._id, { $set: jogad}, { new: true }, function (err, jog2) {
+      if(err) {
+         next(err);
+      }else{
+         res.json(jog2);
+      }
+
+   });
+}
 
 module.exports.list = function(req, res, next){
   Jogador.find({}, function(err, jogadores) {
