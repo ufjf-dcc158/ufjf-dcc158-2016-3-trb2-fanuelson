@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bower": "1.8.0",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "ejs": "^2.5.2",
