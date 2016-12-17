@@ -8,7 +8,7 @@ var consultaPartidasController = function($scope, $position, $http) {
    vm.partidas = {};
 
    vm.findPartidas = function() {
-      $http.get("http://localhost:3000/partida")
+      $http.get("https://labtrab2.herokuapp.com/partida")
          .success(function (res){
             vm.partidas = res;
          }).error(function(res){

@@ -32,7 +32,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
       vm.partida.idJogador1 = vm.partida.idJogador1._id;
       vm.partida.idJogador2 = vm.partida.idJogador2._id;
       console.log(vm.partida);
-      $http.post("http://localhost:3000/partida", vm.partida)
+      $http.post("https://labtrab2.herokuapp.com/partida", vm.partida)
       .success(function(res){
          vm.limparForm();
          toasty.success({
@@ -46,7 +46,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
    }
 
    vm.onSelectPlayer1 = function (item, model){
-      $http.get("http://localhost:3000/jogador")
+      $http.get("https://labtrab2.herokuapp.com/jogador")
       .success(function (res){
          vm.jogadores = res;
          vm.jogadores2 = vm.jogadores.slice(0, vm.jogadores.length);
@@ -60,7 +60,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
    };
 
    vm.onSelectPlayer2 = function (item, model){
-      $http.get("http://localhost:3000/jogador")
+      $http.get("https://labtrab2.herokuapp.com/jogador")
       .success(function (res){
         vm.jogadores = res;
         vm.jogadores2 = vm.jogadores.slice(0, vm.jogadores.length);
@@ -83,7 +83,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
   }
 
    vm.findJogadores = function() {
-      $http.get("http://localhost:3000/jogador")
+      $http.get("https://labtrab2.herokuapp.com/jogador")
       .success(function (res){
          vm.jogadores = res;
          vm.jogadores2 = vm.jogadores.slice(0, vm.jogadores.length);

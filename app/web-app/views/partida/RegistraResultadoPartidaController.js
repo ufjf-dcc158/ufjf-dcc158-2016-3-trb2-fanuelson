@@ -10,7 +10,7 @@ var registraResultadoPartidaController = function($scope, $position, $http, $sta
    vm.numeroVencedor = 0;
 
    vm.findPartidaById = function(idP) {
-      $http.get("http://localhost:3000/partida/"+idP)
+      $http.get("https://labtrab2.herokuapp.com/partida/"+idP)
       .success(function(res){
          vm.partida = res[0];
          if(vm.partida.finalizada){
@@ -52,7 +52,7 @@ var registraResultadoPartidaController = function($scope, $position, $http, $sta
          numeroVencedor: vm.numeroVencedor
       }
 
-      $http.post("http://localhost:3000/partida/registrar/resultado", requestParam)
+      $http.post("https://labtrab2.herokuapp.com/partida/registrar/resultado", requestParam)
       .success(function(res){
          $state.go('dashboard.consulta-partidas');
       }).error(function(res){

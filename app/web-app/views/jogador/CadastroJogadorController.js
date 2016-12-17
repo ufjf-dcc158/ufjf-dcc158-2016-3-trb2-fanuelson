@@ -6,13 +6,12 @@ var cadastroJogadorController = function($scope,$position, $http, $stateParams) 
    var vm = $scope;
 
    if($stateParams.idJog) {
-      $http.get("http://localhost:3000/jogador/" + $stateParams.idJog)
+      $http.get("https://labtrab2.herokuapp.com/jogador/" + $stateParams.idJog)
          .success(function(res){
             vm.jogador = res;
          }).error( function (res){
 
          });
-      // console.log($stateParams.idJog);
    }else{
       vm.jogador = {
          "qtdVitorias": 0,
@@ -26,9 +25,9 @@ var cadastroJogadorController = function($scope,$position, $http, $stateParams) 
    vm.salvar = function() {
       var $promiseSalvar ;
       if(vm.jogador._id) {
-         $promiseSalvar = $http.put("http://localhost:3000/jogador", vm.jogador);
+         $promiseSalvar = $http.put("https://labtrab2.herokuapp.com/jogador", vm.jogador);
       }else {
-         $promiseSalvar = $http.post("http://localhost:3000/jogador", vm.jogador);
+         $promiseSalvar = $http.post("https://labtrab2.herokuapp.com/jogador", vm.jogador);
       }
 
       $promiseSalvar.success(function(res){

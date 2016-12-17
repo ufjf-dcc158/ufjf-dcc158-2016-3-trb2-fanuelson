@@ -6,7 +6,7 @@ var rankingController = function($scope,$position, $http) {
 
    vm.jogadores = {};
 
-   $http.get("http://localhost:3000/jogador/top100")
+   $http.get("https://labtrab2.herokuapp.com/jogador/top100")
       .success(function(res){
          vm.jogadores = res;
       }).error(function(res){
