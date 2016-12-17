@@ -1,16 +1,27 @@
 
 'use strict'
 
-var cadastroJogadorController = function($scope,$position, $http) {
+var cadastroJogadorController = function($scope,$position, $http, $stateParams) {
 
    var vm = $scope;
 
-   vm.jogador = {
-      "qtdVitorias": 0,
-      "qtdDerrotas": 0,
-      "qtdEmpates": 0,
-      "elo": 1500,
+   if($stateParams.idJog) {
+      $http.get("http://localhost:3000/jogador/" + $stateParams.idJog)
+         .success(function(res){
+            vm.jogador = res;
+         }).error( function (res){
+
+         });
+      // console.log($stateParams.idJog);
+   }else{
+      vm.jogador = {
+         "qtdVitorias": 0,
+         "qtdDerrotas": 0,
+         "qtdEmpates": 0,
+         "elo": 1500,
+      }
    }
+
 
    vm.salvar = function() {
 

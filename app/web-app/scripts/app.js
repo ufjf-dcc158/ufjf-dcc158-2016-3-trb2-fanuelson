@@ -127,6 +127,9 @@ angular
       })
       .state('dashboard.cadastro-jogador',{
         url:'/cadastro-jogador',
+        params: {
+           idJog: null
+        },
         controller: 'CadastroJogadorController',
         templateUrl:'views/jogador/cadastro-jogador.html',
         resolve: {
