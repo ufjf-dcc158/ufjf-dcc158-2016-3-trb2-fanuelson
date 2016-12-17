@@ -9,7 +9,7 @@ var mongoose = require('./config/mongoose');
 var express = require("./config/express");
 var db = mongoose();
 var app = express();
-app.listen(3000);
+app.listen(process.env.PORT);
 console.log("Executando na porta http://localhost:3000...");
 
 module.exports = app;
