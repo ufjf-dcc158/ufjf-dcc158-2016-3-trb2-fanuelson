@@ -1,12 +1,12 @@
 
 'use strict'
 
-var cadastroJogadorController = function($scope,$position, $http, $stateParams) {
+var cadastroJogadorController = function($scope,$position, $http, $stateParams, APP_CONFIG) {
 
    var vm = $scope;
 
    if($stateParams.idJog) {
-      $http.get("https://labtrab2.herokuapp.com/jogador/" + $stateParams.idJog)
+      $http.get(APP_CONFIG.REST_BASE_URL + "/jogador/" + $stateParams.idJog)
          .success(function(res){
             vm.jogador = res;
          }).error( function (res){
@@ -25,9 +25,9 @@ var cadastroJogadorController = function($scope,$position, $http, $stateParams) 
    vm.salvar = function() {
       var $promiseSalvar ;
       if(vm.jogador._id) {
-         $promiseSalvar = $http.put("https://labtrab2.herokuapp.com/jogador", vm.jogador);
+         $promiseSalvar = $http.put(APP_CONFIG.REST_BASE_URL + "/jogador", vm.jogador);
       }else {
-         $promiseSalvar = $http.post("https://labtrab2.herokuapp.com/jogador", vm.jogador);
+         $promiseSalvar = $http.post(APP_CONFIG.REST_BASE_URL + "/jogador", vm.jogador);
       }
 
       $promiseSalvar.success(function(res){

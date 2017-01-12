@@ -1,7 +1,7 @@
 
 'use strict'
 
-var cadastroPartidaController = function($scope, $position, $http, toasty) {
+var cadastroPartidaController = function($scope, $position, $http, toasty, APP_CONFIG) {
 
    var vm = $scope;
 
@@ -32,7 +32,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
       vm.partida.idJogador1 = vm.partida.idJogador1._id;
       vm.partida.idJogador2 = vm.partida.idJogador2._id;
       console.log(vm.partida);
-      $http.post("https://labtrab2.herokuapp.com/partida", vm.partida)
+      $http.post(APP_CONFIG.REST_BASE_URL + "/partida", vm.partida)
       .success(function(res){
          vm.limparForm();
          toasty.success({
@@ -46,7 +46,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
    }
 
    vm.onSelectPlayer1 = function (item, model){
-      $http.get("https://labtrab2.herokuapp.com/jogador")
+      $http.get(APP_CONFIG.REST_BASE_URL + "/jogador")
       .success(function (res){
          vm.jogadores = res;
          vm.jogadores2 = vm.jogadores.slice(0, vm.jogadores.length);
@@ -60,7 +60,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
    };
 
    vm.onSelectPlayer2 = function (item, model){
-      $http.get("https://labtrab2.herokuapp.com/jogador")
+      $http.get(APP_CONFIG.REST_BASE_URL + "/jogador")
       .success(function (res){
         vm.jogadores = res;
         vm.jogadores2 = vm.jogadores.slice(0, vm.jogadores.length);
@@ -83,7 +83,7 @@ var cadastroPartidaController = function($scope, $position, $http, toasty) {
   }
 
    vm.findJogadores = function() {
-      $http.get("https://labtrab2.herokuapp.com/jogador")
+      $http.get(APP_CONFIG.REST_BASE_URL + "/jogador")
       .success(function (res){
          vm.jogadores = res;
          vm.jogadores2 = vm.jogadores.slice(0, vm.jogadores.length);
@@ -105,6 +105,7 @@ var deps = [
    '$position',
    '$http',
    'toasty',
+   'APP_CONFIG',
    cadastroPartidaController
 ]
 

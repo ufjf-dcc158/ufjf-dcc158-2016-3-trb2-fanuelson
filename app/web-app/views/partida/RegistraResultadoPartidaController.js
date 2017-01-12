@@ -1,7 +1,7 @@
 
 'use strict'
 
-var registraResultadoPartidaController = function($scope, $position, $http, $state, $stateParams) {
+var registraResultadoPartidaController = function($scope, $position, $http, $state, $stateParams, APP_CONFIG) {
 
    var vm = $scope;
 
@@ -10,7 +10,7 @@ var registraResultadoPartidaController = function($scope, $position, $http, $sta
    vm.numeroVencedor = 0;
 
    vm.findPartidaById = function(idP) {
-      $http.get("https://labtrab2.herokuapp.com/partida/"+idP)
+      $http.get(APP_CONFIG.REST_BASE_URL + "/partida/"+idP)
       .success(function(res){
          vm.partida = res[0];
          if(vm.partida.finalizada){
@@ -52,7 +52,7 @@ var registraResultadoPartidaController = function($scope, $position, $http, $sta
          numeroVencedor: vm.numeroVencedor
       }
 
-      $http.post("https://labtrab2.herokuapp.com/partida/registrar/resultado", requestParam)
+      $http.post(APP_CONFIG.REST_BASE_URL + "/partida/registrar/resultado", requestParam)
       .success(function(res){
          $state.go('dashboard.consulta-partidas');
       }).error(function(res){

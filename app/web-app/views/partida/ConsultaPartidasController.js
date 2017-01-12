@@ -1,14 +1,14 @@
 
 'use strict'
 
-var consultaPartidasController = function($scope, $position, $http) {
+var consultaPartidasController = function($scope, $position, $http, APP_CONFIG) {
 
    var vm = $scope;
 
    vm.partidas = {};
 
    vm.findPartidas = function() {
-      $http.get("https://labtrab2.herokuapp.com/partida")
+      $http.get(APP_CONFIG.REST_BASE_URL + "/partida")
          .success(function (res){
             vm.partidas = res;
          }).error(function(res){

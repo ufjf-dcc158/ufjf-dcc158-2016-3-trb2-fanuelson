@@ -1,12 +1,14 @@
 'use strict';
 
-var rankingController = function($scope,$position, $http) {
+var rankingController = function($scope,$position, $http, APP_CONFIG) {
 
    var vm = $scope;
 
    vm.jogadores = {};
 
-   $http.get("https://labtrab2.herokuapp.com/jogador/top100")
+   console.log(APP_CONFIG.REST_BASE_URL);
+
+   $http.get(APP_CONFIG.REST_BASE_URL + "/jogador/top100")
       .success(function(res){
          vm.jogadores = res;
       }).error(function(res){

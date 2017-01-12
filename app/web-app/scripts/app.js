@@ -27,6 +27,14 @@ angular
       events:true,
     });
 
+    angular.module('sbAdminApp').constant(
+      "APP_CONFIG", {
+         "REST_BASE_URL" : "http://localhost:3000",
+         // "REST_BASE_URL" : "https://labtrab2.herokuapp.com",
+         "DEFAULT_PAGE_SIZE": 10
+      }
+   );
+
    //  ANGULAR MATERIAL THEME AND DATE CONFIG
     var configTheme = function($mdThemingProvider){
       // Update the theme colors to use themes on font-icons
